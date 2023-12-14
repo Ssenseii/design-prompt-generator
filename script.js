@@ -200,37 +200,34 @@ const designErrors = [
 ];
 
 
-const html_prompt = document.getElementById("prompt");
-const html_generator = document.getElementById("generator");
-
+const htmlPrompt = document.getElementById("prompt");
+const htmlGenerator = document.getElementById("generator");
 
 const localStorageKey = "website-prompt";
 
+function generatePrompt() {
+    const pWeb = websiteTypes[Math.floor(Math.random() * websiteTypes.length)];
+    const pPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+    const pDesign = designErrors[Math.floor(Math.random() * designErrors.length)];
 
-function generate_prompt(){
-    const p_web = websiteTypes[Math.floor(Math.random() * websiteTypes.length)];
-    const p_prompt = prompts[Math.floor(Math.random() * prompts.length)];
-    const p_design = designErrors[Math.floor(Math.random() * designErrors.length)];
-    
-    let a_or_an = "a";
-    
-    if (p_web[0].toLowerCase() == "a" || p_web[0].toLowerCase() == "e" || p_web[0].toLowerCase() == "o" || p_web[0].toLowerCase() == "i" || p_web[0].toLowerCase() == "u"){
-        a_or_an = "an"
-    } 
-    
-    const prompt_text = `Make ${a_or_an} <span class="p_web"> ${p_web}</span> specializing in <span class="p_prompt">${p_prompt} </span> using the <span class="p_design">${p_design}</span> aesthetic.`
-    
-    html_prompt.innerHTML = prompt_text;
+    let aOrAn = isVowel(pWeb[0]) ? "an" : "a";
 
-    localStorage.setItem(localStorageKey, prompt_text);
+    const promptText = `Make ${aOrAn} <span class="p_web">${pWeb}</span> specializing in <span class="p_prompt">${pPrompt}</span> using the <span class="p_design">${pDesign}</span> aesthetic.`;
+
+    htmlPrompt.innerHTML = promptText;
+    localStorage.setItem(localStorageKey, promptText);
+}
+
+function isVowel(char) {
+    return ["a", "e", "i", "o", "u"].includes(char.toLowerCase());
 }
 
 let savedPrompt = localStorage.getItem(localStorageKey);
 
 if (savedPrompt) {
-    html_prompt.innerHTML = savedPrompt;
+    htmlPrompt.innerHTML = savedPrompt;
 } else {
-    generate_prompt();
+    generatePrompt();
 }
 
-html_generator.addEventListener("click", generate_prompt);
+htmlGenerator.addEventListener("click", generatePrompt);

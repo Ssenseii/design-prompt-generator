@@ -1,0 +1,84 @@
+// import fonts
+
+// general
+
+html {
+  box-sizing: border-box;
+  font-family: 'Encode Sans SC', sans-serif;
+  font-size: 100%;
+  scroll-behavior: smooth;
+
+  background-color: #030214;
+  color: #e0e0fb;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+header{
+  height: 4rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  
+  img{
+    width: 3rem;
+  }
+}
+
+main{
+  height: calc(100vh - 4rem);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1{
+  font-size: 2vw;
+  text-align: center;
+  width: 70vw;
+  margin-bottom: 4rem;
+}
+
+button{
+  cursor: pointer;
+  height: 3rem;
+  width: 8rem;
+  border-radius: 2rem;
+  border: none;
+  background-color: #897bf0;
+  color: #030214;
+  font-size: 16px;
+  transition: transform 200ms ease-out;
+
+  &:hover{
+    transform: translateY(-2px);
+  }
+
+  &:active{
+    transform: translateY(2px);
+  }
+}
+
+.p_web{
+  color: #897bf0;
+}
+
+.p_prompt{
+  color: #9d1293;
+}
+
+.p_design{
+  color: #e72e8d;
+}
